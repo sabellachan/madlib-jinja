@@ -3,6 +3,8 @@ from random import choice
 from flask import Flask, render_template, request
 
 
+
+
 # "__name__" is a special Python variable for the name of the current module
 # Flask wants to know this to know what any imported things are relative to.
 app = Flask(__name__)
@@ -44,7 +46,15 @@ def show_madlib():
     noun = request.args.get("noun")
     person = request.args.get("person")
     adjective = request.args.get("adjective")
-    return render_template("madlib.html", color=color, noun=noun, person=person, adjective=adjective)
+    adverb = request.args.get("adverb")
+    smell = request.args.get("smell")
+    taste = request.args.get("taste")
+
+    madlib_options = ["madlib.html", "madlib1.html", "madlib2.html"]
+    madlib = choice(madlib_options)
+
+    return render_template(madlib, color=color, noun=noun, person=person, 
+        adjective=adjective, adverb=adverb, smell=smell, taste=taste)
 
 
 if __name__ == '__main__':
