@@ -1,4 +1,4 @@
-from random import choice
+from random import choice, sample
 
 from flask import Flask, render_template, request
 
@@ -12,17 +12,17 @@ app = Flask(__name__)
 # route to handle the landing page of a website.
 @app.route('/')
 def start_here():
-    return "Hi! This is the home page."
+    return "Hi! This is the home page. <a href='/hello'>Hello</a>"
 
 # route to display a simple web page
 @app.route('/hello')
 def say_hello():
     return render_template("hello.html")
 
-@app.route('/game')
+@app.route('/game', methods=["POST"])
 def show_game_form():
-    game_response = request.args.get("game")
-    name = request.args.get("name")
+    game_response = request.form.get("game")
+    name = request.form.get("name")
     if game_response == "no":
         return render_template("goodbye.html", person=name)
     else:
@@ -36,9 +36,10 @@ def greet_person():
         'awesome', 'terrific', 'fantastic', 'neato', 'fantabulous', 'wowza', 'oh-so-not-meh',
         'brilliant', 'ducky', 'coolio', 'incredible', 'wonderful', 'smashing', 'lovely']
 
-    compliment = choice(AWESOMENESS)
+    compliments = sample(set(AWESOMENESS), 3)
+    print type(compliments)
 
-    return render_template("compliment.html", person=player, compliment=compliment)
+    return render_template("compliment.html", person=player, compliments=compliments)
 
 @app.route('/madlib')
 def show_madlib():

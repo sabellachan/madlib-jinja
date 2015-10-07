@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{% block title %}Madlibs Game: Home Page{% endblock %}</title>
+        <link rel="stylesheet" href="/static/madlibs.css">
+        <script src="http://code.jquery.comn/kquery-2.1.1.min.js"></script>
+        <script src="js/jquery.validate.js"></script>
+    </head>
+    <body>
+        <h1>{% block content %}Madlibs Header{% endblock %}</h1>
+        {% block content2 %}BLOCK CONTENT HERE{% endblock %}
+        <script>
+        $("#commentForm").validate();
+        </script>
+        <footer>Copyright Hackbright Academy 2015</footer>
+    </body>
+</html>

@@ -6,9 +6,14 @@
     </head>
     <body>
         <h1>You deserve a compliment!</h1>
-        <p>Hi {{ person }}! I think you're {{ compliment }}!</p>
-
-        <form action="/game">
+        <p>Hi {{ person }}! I think you're 
+            <ul>
+                {% for compliment in compliments %}
+                <li>{{ compliment }}!</li>
+                {% endfor %}
+            </ul>
+        </p>
+        <form action="/game", method="POST">
             Would you like to play a game?
             <input type="radio" name="game" value="yes">Yes
             <input type="radio" name="game" value="no">No
